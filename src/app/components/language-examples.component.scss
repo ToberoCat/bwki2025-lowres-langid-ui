@@ -1,0 +1,66 @@
+@import '../shared/styles/index';
+
+.examples-section {
+  margin-bottom: $spacing-2xl;
+}
+
+.examples-header {
+  margin-bottom: $spacing-md;
+}
+
+.examples-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: $text-secondary;
+}
+
+.examples-grid {
+  @include grid-auto-fit(220px);
+  margin-bottom: $spacing-sm;
+}
+
+.example-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: $spacing-md 1.25rem;
+  background: $bg-white-light;
+  border: 2px solid rgba(0, 0, 0, 0.06);
+  border-radius: $radius-lg;
+  cursor: pointer;
+  transition: $transition-fast;
+  font-size: 0.9rem;
+  text-align: left;
+  backdrop-filter: blur(10px);
+  min-height: 56px;
+
+  &:hover:not(:disabled) {
+    background: $bg-white;
+    border-color: $border-primary;
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .flag {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: $text-secondary;
+  }
+}
+
+@include mobile {
+  .examples-grid {
+    grid-template-columns: 1fr;
+  }
+}

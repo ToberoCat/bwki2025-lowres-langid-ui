@@ -1,0 +1,51 @@
+@import '../styles/index';
+
+.loading-container {
+  @include flex-column();
+  @include flex-center();
+  gap: $spacing-md;
+  padding: $spacing-lg;
+  text-align: center;
+
+  &.loading-small {
+    gap: $spacing-sm;
+    padding: $spacing-md;
+
+    .spinner {
+      @include loading-spinner(24px);
+    }
+
+    .loading-message {
+      font-size: 0.8rem;
+    }
+  }
+
+  &.loading-medium {
+    .spinner {
+      @include loading-spinner(40px);
+    }
+
+    .loading-message {
+      font-size: 0.9rem;
+    }
+  }
+
+  &.loading-large {
+    gap: $spacing-lg;
+    padding: $spacing-xl;
+
+    .spinner {
+      @include loading-spinner(60px);
+    }
+
+    .loading-message {
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+  }
+}
+
+.loading-message {
+  margin: 0;
+  color: $text-muted;
+}

@@ -1,0 +1,170 @@
+@import '../shared/styles/index';
+
+.results-section {
+  margin-top: $spacing-xl;
+  @include flex-column();
+  gap: $spacing-lg;
+}
+
+.top-result-card {
+  @include fade-in-up();
+}
+
+::ng-deep .top-result-card .p-card-content {
+  padding: 0 !important;
+}
+
+.top-result {
+  text-align: center;
+}
+
+.result-header {
+  @include flex-between();
+  margin-bottom: $spacing-md;
+
+  h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: $text-secondary;
+    font-weight: 600;
+  }
+}
+
+.language-name {
+  font-size: 2rem;
+  font-weight: 700;
+  color: $text-primary;
+  margin-bottom: $spacing-sm;
+  @include text-gradient();
+}
+
+.writing-system {
+  margin-bottom: $spacing-md;
+  @include flex-center();
+  gap: $spacing-sm;
+  font-size: 0.9rem;
+}
+
+.writing-system-label {
+  color: $text-muted;
+  font-weight: 500;
+}
+
+.writing-system-value {
+  color: $text-secondary;
+  font-weight: 600;
+  background: rgba(102, 126, 234, 0.1);
+  padding: $spacing-xs 0.75rem;
+  border-radius: $radius-md;
+  border: 1px solid $border-primary;
+}
+
+.confidence-bar {
+  margin-top: $spacing-md;
+}
+
+::ng-deep .confidence-progress .p-progressbar {
+  height: 8px !important;
+  background: rgba(102, 126, 234, 0.1) !important;
+  border-radius: 4px !important;
+
+  .p-progressbar-value {
+    background: $success-gradient !important;
+  }
+}
+
+.other-results {
+  @include fade-in-up(0.6s);
+
+  h4 {
+    margin: 0 0 $spacing-md 0;
+    font-size: 1.1rem;
+    color: $text-secondary;
+    font-weight: 600;
+  }
+}
+
+.results-list {
+  @include flex-column();
+  gap: 0.75rem;
+}
+
+.result-item {
+  @include flex-between();
+  padding: 0.75rem $spacing-md;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: $radius-md;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.result-language-info {
+  @include flex-column();
+  gap: $spacing-xs;
+}
+
+.result-language {
+  font-weight: 500;
+  color: $text-secondary;
+}
+
+.result-writing-system {
+  font-size: 0.8rem;
+  color: $text-muted;
+  background: rgba(102, 126, 234, 0.08);
+  padding: 0.15rem $spacing-sm;
+  border-radius: $radius-sm;
+  border: 1px solid rgba(102, 126, 234, 0.15);
+  width: fit-content;
+}
+
+.result-confidence {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  min-width: 120px;
+  justify-content: flex-end;
+}
+
+.confidence-text {
+  font-size: 0.9rem;
+  color: $text-muted;
+  min-width: 40px;
+  text-align: right;
+}
+
+::ng-deep .mini-progress {
+  width: 60px !important;
+
+  .p-progressbar {
+    height: 4px !important;
+    background: $bg-black-overlay !important;
+  }
+}
+
+.chart-section {
+  @include fade-in-up(0.7s);
+}
+
+.chart-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: $spacing-md;
+}
+
+@include mobile {
+  .result-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $spacing-sm;
+  }
+
+  .result-confidence {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .result-language-info {
+    width: 100%;
+    margin-bottom: $spacing-sm;
+  }
+}

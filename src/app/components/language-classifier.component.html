@@ -1,0 +1,114 @@
+<div class="language-classifier-container">
+  <div class="classifier-card">
+    <div class="card-header">
+      <div class="title-section">
+        <h2>{{ 'results.title' | translate }}</h2>
+        <p>{{ 'about.description' | translate }}</p>
+      </div>
+      <p-button
+        icon="pi pi-cog"
+        [text]="true"
+        [rounded]="true"
+        class="settings-btn"
+        (onClick)="showSettings = true"
+        [disabled]="isLoading"
+        pTooltip="Settings">
+      </p-button>
+    </div>
+
+    <app-language-examples
+      [examples]="examples"
+      [disabled]="isLoading"
+      (exampleSelected)="useExample($event)">
+    </app-language-examples>
+
+    <div class="input-section">
+      <div class="input-wrapper">
+        <textarea
+          pInputTextarea
+          [(ngModel)]="inputText"
+          [placeholder]="'input.placeholder' | translate"
+          class="text-input"
+          [disabled]="isLoading"
+          rows="4">
+        </textarea>
+        <div class="input-actions">
+          <p-button
+            [label]="'button.clear' | translate"
+            [text]="true"
+            [size]="'small'"
+            (onClick)="clearText()"
+            [disabled]="!inputText.trim() || isLoading"
+            class="clear-btn">
+          </p-button>
+          <p-button
+            [label]="'button.classify' | translate"
+            (onClick)="classifyText()"
+            [loading]="isLoading"
+            [disabled]="!inputText.trim() || !selectedProvider"
+            class="classify-btn"
+            icon="pi pi-search">
+          </p-button>
+        </div>
+      </div>
+    </div>
+
+    <app-loading-spinner
+      *ngIf="isLoading"
+      size="medium"
+      [message]="'status.loading' | translate">
+    </app-loading-spinner>
+
+    <app-classification-results
+      *ngIf="filteredClassifications.length > 0 && !isLoading"
+      [results]="filteredClassifications"
+      [chartData]="chartData"
+      [chartOptions]="chartOptions">
+    </app-classification-results>
+
+    <div class="error-section" *ngIf="errorMessage">
+      <p-message
+        severity="error"
+        [text]="errorMessage"
+        class="error-message">
+      </p-message>
+    </div>
+  </div>
+
+  <p-dialog
+    [(visible)]="showSettings"
+    [header]="'settings.title' | translate"
+    [modal]="true"
+    [draggable]="false"
+    [resizable]="false"
+    styleClass="settings-dialog"
+    [style]="{width: '90vw', maxWidth: '500px'}">
+
+    <div class="settings-content">
+      <div class="setting-group">
+        <label>{{ 'settings.provider' | translate }}</label>
+        <p-select
+          [options]="providerOptions"
+          [(ngModel)]="selectedProvider"
+          optionLabel="label"
+          optionValue="value"
+          [placeholder]="'settings.provider.placeholder' | translate"
+          [disabled]="isLoading"
+          class="provider-select">
+        </p-select>
+
+        <div class="provider-info" *ngIf="selectedProviderInfo">
+          <div class="info-item">
+            <strong>{{ selectedProviderInfo.name }}</strong>
+            <span class="version">{{ 'settings.version' | translate }}: {{ selectedProviderInfo.version }}</span>
+          </div>
+          <div class="info-item">
+            <span class="languages-count">
+              {{ selectedProviderInfo.supported_languages }} {{ 'settings.languages' | translate }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </p-dialog>
+</div>

@@ -1,0 +1,22 @@
+@import '../styles/index';
+
+.glass-card {
+  @include glass-card();
+  border-radius: $radius-2xl;
+
+  &.animated {
+    @include slide-up();
+  }
+
+  &.padding-small {
+    padding: $spacing-md;
+  }
+
+  &.padding-medium {
+    padding: $spacing-xl;
+  }
+
+  &.padding-large {
+    padding: $spacing-2xl;
+  }
+}

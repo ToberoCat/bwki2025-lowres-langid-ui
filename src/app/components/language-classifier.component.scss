@@ -1,0 +1,189 @@
+@import '../shared/styles/index';
+
+.language-classifier-container {
+  @extend .container;
+  max-width: 1000px;
+}
+
+.classifier-card {
+  @include glass-card();
+  @include card-base();
+  @include slide-up();
+}
+
+.card-header {
+  @include flex-between();
+  align-items: flex-start;
+  margin-bottom: $spacing-xl;
+  padding-bottom: $spacing-lg;
+  border-bottom: 1px solid $border-light;
+}
+
+.title-section h2 {
+  margin: 0 0 $spacing-sm 0;
+  font-size: 2rem;
+  font-weight: 700;
+  color: $text-primary;
+  @include text-gradient();
+}
+
+.title-section p {
+  margin: 0;
+  color: $text-muted;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.settings-btn {
+  flex-shrink: 0;
+}
+
+::ng-deep .settings-btn {
+  width: 48px !important;
+  height: 48px !important;
+  background: $bg-white-overlay !important;
+  border: 1px solid $border-light !important;
+  backdrop-filter: blur(10px) !important;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    transform: scale(1.05) !important;
+  }
+}
+
+.input-section {
+  margin-bottom: $spacing-2xl;
+}
+
+.input-wrapper {
+  @include flex-column();
+  gap: $spacing-md;
+}
+
+::ng-deep .text-input {
+  @include input-base();
+  min-height: 120px !important;
+  resize: vertical !important;
+}
+
+.input-actions {
+  display: flex;
+  gap: 1.25rem;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+::ng-deep .clear-btn {
+  color: $text-muted !important;
+  padding: 0 1.25rem !important;
+  height: 44px !important;
+  border-radius: 10px !important;
+  transition: $transition-fast !important;
+
+  &:hover:not(:disabled) {
+    background: $bg-black-overlay !important;
+    color: $text-secondary !important;
+  }
+}
+
+::ng-deep .classify-btn {
+  @include button-primary();
+  border-radius: $radius-md !important;
+  font-weight: 600 !important;
+  transition: $transition-normal !important;
+}
+
+.error-section {
+  margin: $spacing-lg 0;
+  @include fade-in-up(0.3s);
+}
+
+::ng-deep .error-message {
+  border-radius: $radius-lg !important;
+  background: rgba(239, 68, 68, 0.05) !important;
+  border: 2px solid rgba(239, 68, 68, 0.1) !important;
+  backdrop-filter: blur(10px) !important;
+
+  .p-message-text {
+    font-size: 0.9rem !important;
+    color: $error-color !important;
+    line-height: 1.5 !important;
+  }
+
+  .p-message-icon {
+    color: $error-color !important;
+  }
+}
+
+.settings-content {
+  padding: $spacing-md 0;
+}
+
+.setting-group {
+  margin-bottom: $spacing-lg;
+
+  label {
+    display: block;
+    margin-bottom: $spacing-sm;
+    font-weight: 600;
+    color: $text-secondary;
+  }
+}
+
+.provider-select {
+  width: 100%;
+}
+
+.provider-info {
+  margin-top: $spacing-md;
+  padding: $spacing-md;
+  background: rgba(102, 126, 234, 0.05);
+  border-radius: $radius-sm;
+  border: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+.info-item {
+  @include flex-between();
+  margin-bottom: $spacing-sm;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.version {
+  font-size: 0.85rem;
+  color: $text-muted;
+}
+
+.languages-count {
+  font-size: 0.9rem;
+  color: $primary-color;
+  font-weight: 500;
+}
+
+@include mobile {
+  .classifier-card {
+    padding: $spacing-lg;
+    margin: $spacing-md;
+    border-radius: $radius-xl;
+  }
+
+  .card-header {
+    flex-direction: column;
+    gap: $spacing-md;
+    align-items: flex-start;
+  }
+
+  .title-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .input-actions {
+    flex-direction: column-reverse;
+  }
+
+  ::ng-deep .classify-btn {
+    width: 100% !important;
+  }
+}

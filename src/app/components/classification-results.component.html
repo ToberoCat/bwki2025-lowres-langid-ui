@@ -1,0 +1,62 @@
+<div class="results-section" *ngIf="results.length > 0">
+  <p-card class="top-result-card" *ngIf="topResult">
+    <div class="top-result">
+      <div class="result-header">
+        <h3>{{ 'results.topResult' | translate }}</h3>
+        <p-badge
+          [value]="(topResult.probability * 100).toFixed(1) + '%'"
+          severity="success"
+          size="large">
+        </p-badge>
+      </div>
+      <div class="language-name">
+        {{ topResult.language }}
+      </div>
+      <div class="writing-system">
+        <span class="writing-system-label">Writing System:</span>
+        <span class="writing-system-value">{{ topResult.writing_system }}</span>
+      </div>
+      <div class="confidence-bar">
+        <p-progressBar
+          [value]="topResult.probability * 100"
+          [showValue]="false"
+          styleClass="confidence-progress">
+        </p-progressBar>
+      </div>
+    </div>
+  </p-card>
+
+  <div class="other-results" *ngIf="otherResults.length > 0">
+    <h4>{{ 'Other candidates' }}</h4>
+    <div class="results-list">
+      <div
+        *ngFor="let result of otherResults"
+        class="result-item">
+        <div class="result-language-info">
+          <span class="result-language">{{ result.language }}</span>
+          <span class="result-writing-system">{{ result.writing_system }}</span>
+        </div>
+        <div class="result-confidence">
+          <span class="confidence-text">{{ (result.probability * 100).toFixed(1) }}%</span>
+          <p-progressBar
+            [value]="result.probability * 100"
+            [showValue]="false"
+            styleClass="mini-progress">
+          </p-progressBar>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-section" *ngIf="showChart">
+    <p-card>
+      <div class="chart-container">
+        <p-chart
+          type="doughnut"
+          [data]="chartData"
+          [options]="chartOptions">
+        </p-chart>
+      </div>
+    </p-card>
+  </div>
+</div>

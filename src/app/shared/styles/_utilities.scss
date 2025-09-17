@@ -1,0 +1,141 @@
+@import 'variables';
+@import 'mixins';
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.text-gradient {
+  @include text-gradient();
+}
+
+.text-primary {
+  color: $text-primary;
+}
+
+.text-secondary {
+  color: $text-secondary;
+}
+
+.text-muted {
+  color: $text-muted;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.flex-center {
+  @include flex-center();
+}
+
+.flex-between {
+  @include flex-between();
+}
+
+.flex-column {
+  @include flex-column();
+}
+
+.mb-xs { margin-bottom: $spacing-xs; }
+.mb-sm { margin-bottom: $spacing-sm; }
+.mb-md { margin-bottom: $spacing-md; }
+.mb-lg { margin-bottom: $spacing-lg; }
+.mb-xl { margin-bottom: $spacing-xl; }
+.mb-2xl { margin-bottom: $spacing-2xl; }
+
+.mt-xs { margin-top: $spacing-xs; }
+.mt-sm { margin-top: $spacing-sm; }
+.mt-md { margin-top: $spacing-md; }
+.mt-lg { margin-top: $spacing-lg; }
+.mt-xl { margin-top: $spacing-xl; }
+.mt-2xl { margin-top: $spacing-2xl; }
+
+.p-xs { padding: $spacing-xs; }
+.p-sm { padding: $spacing-sm; }
+.p-md { padding: $spacing-md; }
+.p-lg { padding: $spacing-lg; }
+.p-xl { padding: $spacing-xl; }
+.p-2xl { padding: $spacing-2xl; }
+
+.glass-card {
+  @include glass-card();
+  @include card-base();
+}
+
+.btn-primary {
+  @include button-primary();
+}
+
+.btn-secondary {
+  @include button-secondary();
+}
+
+.input-field {
+  @include input-base();
+}
+
+.loading-spinner {
+  @include loading-spinner();
+}
+
+.slide-up {
+  @include slide-up();
+}
+
+.fade-in-up {
+  @include fade-in-up();
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+}
+
+.container-sm {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+}
+
+.container-lg {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+}

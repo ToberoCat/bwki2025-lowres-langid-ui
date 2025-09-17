@@ -1,0 +1,15 @@
+<div class="examples-section">
+  <div class="examples-header">
+    <span class="examples-title">{{ 'examples.title' | translate }}</span>
+  </div>
+  <div class="examples-grid">
+    <button
+      *ngFor="let example of examples"
+      class="example-btn"
+      [disabled]="disabled"
+      (click)="onExampleClick(example.text)">
+      <span class="flag">{{ example.flag }}</span>
+      <span class="text">{{ example.text }}</span>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+@import '../shared/styles/index';
+
+.language-switcher {
+  min-width: 120px;
+}
+
+::ng-deep .language-select {
+  min-width: 120px;
+
+  .p-select-label {
+    padding: $spacing-sm 0.75rem;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: $radius-sm;
+    backdrop-filter: blur(10px);
+    transition: $transition-normal;
+  }
+
+  &:not(.p-disabled):hover .p-select-label {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+
+  &.p-select-focused .p-select-label {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+  }
+
+  .p-select-overlay {
+    background: $bg-white;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: $radius-md;
+    box-shadow: $shadow-lg;
+
+    .p-select-option {
+      color: #333;
+      padding: 0.75rem;
+      transition: $transition-fast;
+
+      &:hover {
+        background: rgba(59, 130, 246, 0.1);
+      }
+
+      &.p-selected {
+        background: rgba(59, 130, 246, 0.2);
+        color: #1d4ed8;
+      }
+    }
+  }
+}
+
+.selected-language,
+.language-option {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.flag {
+  font-size: 1.2rem;
+}
+
+.name {
+  font-size: 0.9rem;
+  font-weight: 500;
+}

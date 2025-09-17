@@ -1,33 +1,30 @@
+@import 'shared/styles/index';
+
 .app-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  display: flex;
-  flex-direction: column;
+  background: $primary-gradient;
+  @include flex-column();
 }
 
 .app-header {
-  background: rgba(255, 255, 255, 0.1);
+  background: $bg-white-overlay;
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 1rem 0;
+  border-bottom: 1px solid $border-white;
+  padding: $spacing-md 0;
   position: sticky;
   top: 0;
   z-index: 1000;
 
   .header-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @extend .container-lg;
+    @include flex-between();
   }
 
   .logo-section {
     .logo {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: $spacing-md;
 
       .logo-icon {
         font-size: 2.5rem;
@@ -39,14 +36,14 @@
           margin: 0;
           font-size: 1.5rem;
           font-weight: 700;
-          color: white;
+          color: $text-white;
           text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         p {
           margin: 0;
           font-size: 0.9rem;
-          color: rgba(255, 255, 255, 0.8);
+          color: $text-light;
           font-weight: 300;
         }
       }
@@ -56,29 +53,25 @@
   .header-actions {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: $spacing-md;
   }
 }
 
 .app-main {
   flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem 1rem;
+  @include flex-center();
+  padding: $spacing-xl $spacing-md;
 }
 
 .app-footer {
-  background: rgba(0, 0, 0, 0.1);
+  background: $bg-black-overlay;
   backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 1rem 0;
+  border-top: 1px solid $border-white;
+  padding: $spacing-md 0;
   text-align: center;
 
   .footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
+    @extend .container-lg;
 
     p {
       margin: 0;

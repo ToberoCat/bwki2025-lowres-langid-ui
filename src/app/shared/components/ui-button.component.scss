@@ -1,0 +1,91 @@
+@import '../styles/index';
+
+.ui-button {
+  @include button-base();
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  font-family: inherit;
+  cursor: pointer;
+  position: relative;
+
+  &.variant-primary {
+    @include button-primary();
+  }
+
+  &.variant-secondary {
+    @include button-secondary();
+  }
+
+  &.variant-outline {
+    background: transparent;
+    border: 2px solid $primary-color;
+    color: $primary-color;
+
+    &:hover:not(:disabled) {
+      background: $primary-color;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: $shadow-primary;
+    }
+  }
+
+  &.size-small {
+    padding: $spacing-sm $spacing-md;
+    font-size: 0.875rem;
+    height: 36px;
+
+    .loading-spinner {
+      @include loading-spinner(16px);
+    }
+  }
+
+  &.size-medium {
+    padding: $spacing-md $spacing-lg;
+    font-size: 0.9rem;
+    height: 44px;
+
+    .loading-spinner {
+      @include loading-spinner(20px);
+    }
+  }
+
+  &.size-large {
+    padding: $spacing-lg $spacing-xl;
+    font-size: 1rem;
+    height: 52px;
+
+    .loading-spinner {
+      @include loading-spinner(24px);
+    }
+  }
+
+  &.full-width {
+    width: 100%;
+  }
+
+  &.loading {
+    pointer-events: none;
+
+    .button-content {
+      opacity: 0.7;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: $shadow-sm !important;
+  }
+
+  .loading-spinner {
+    position: absolute;
+    left: $spacing-md;
+  }
+
+  .button-content {
+    transition: opacity 0.2s ease;
+  }
+}
