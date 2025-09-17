@@ -53,7 +53,7 @@ jobs:
       uses: actions/upload-pages-artifact@v3
       if: github.ref == 'refs/heads/main'
       with:
-        path: './dist/bwki2025-lowres-langid-ui'
+        path: './dist/bwki2025-lowres-langid-ui/browser'
 
   deploy:
     environment:
