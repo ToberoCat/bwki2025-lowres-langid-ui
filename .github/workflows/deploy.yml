@@ -37,7 +37,7 @@ jobs:
       run: npm ci
 
     - name: Build Angular application
-      run: npm run build
+      run: npm run build -- --base-href="/bwki2025-lowres-langid-ui/"
 
     - name: List dist directory (for debugging)
       run: |
@@ -53,7 +53,7 @@ jobs:
       uses: actions/upload-pages-artifact@v3
       if: github.ref == 'refs/heads/main'
       with:
-        path: './dist'
+        path: './dist/bwki2025-lowres-langid-ui'
 
   deploy:
     environment:

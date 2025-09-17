@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "outputPath": "dist/bwki2025-lowres-langid-ui",
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
