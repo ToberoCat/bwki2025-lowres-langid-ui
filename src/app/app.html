@@ -1,0 +1,29 @@
+<div class="app-container">
+  <header class="app-header">
+    <div class="header-content">
+      <div class="logo-section">
+        <div class="logo">
+          <div class="logo-icon">🧠</div>
+          <div class="logo-text">
+            <h1>{{ 'app.title' | translate }}</h1>
+            <p>{{ 'app.subtitle' | translate }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <app-language-switcher></app-language-switcher>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <app-language-classifier></app-language-classifier>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-content">
+      <p>&copy; 2025 Tobias Madlberger, Florian Schwanzer, Fabian Popov</p>
+    </div>
+  </footer>
+</div>
