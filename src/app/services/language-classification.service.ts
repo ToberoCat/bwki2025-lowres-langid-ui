@@ -1,79 +1,66 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 export interface ClassificationResult {
   language: string;
   probability: number;
-  writing_system: string;
 }
 
 export interface ClassificationResponse {
   classifications: ClassificationResult[];
-  provider: string;
-  provider_version: string;
+  writing_system?: string;
 }
 
-export interface TextRequest {
+export interface ClassifyRequest {
   text: string;
-  provider?: string;
-  top_k?: number;
+  locale?: string;
 }
 
-export interface ProviderInfo {
-  name: string;
-  version: string;
-  available: boolean;
-  supported_languages: number;
+// Server response interfaces
+export interface ServerPrediction {
+  language_id: string;
+  language_name: string;
+  probability: number;
 }
 
-export interface ProvidersResponse {
-  providers: string[];
-  default: string | null;
-  details: { [key: string]: ProviderInfo };
-}
-
-export interface ApiInfo {
-  message: string;
-  version: string;
-  available_providers: string[];
-  default_provider: string | null;
+export interface ServerResponse {
+  predictions: ServerPrediction[];
+  writing_system: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class LanguageClassificationService {
-  private readonly baseUrl = 'http://localhost:8000';
-
   constructor(private http: HttpClient) {}
 
-  getApiInfo(): Observable<ApiInfo> {
-    return this.http.get<ApiInfo>(`${this.baseUrl}/`);
+  checkHealth(baseUrl: string): Observable<any> {
+    return this.http.get(`${baseUrl}/health`);
   }
 
-  getProviders(): Observable<ProvidersResponse> {
-    return this.http.get<ProvidersResponse>(`${this.baseUrl}/providers`);
-  }
-
-  getProviderLanguages(provider: string): Observable<{ provider: string; supported_languages: string[] }> {
-    return this.http.get<{ provider: string; supported_languages: string[] }>(
-      `${this.baseUrl}/providers/${provider}/languages`
-    );
-  }
-
-  classifyText(text: string, provider?: string, topK: number = 10): Observable<ClassificationResponse> {
-    const request: TextRequest = { 
-      text, 
-      provider, 
-      top_k: topK 
+  classifyText(text: string, baseUrl: string, locale: string = 'en'): Observable<ClassificationResponse> {
+    const request: ClassifyRequest = {
+      text,
+      locale
     };
-    
-    let params = new HttpParams();
-    if (provider) {
-      params = params.set('provider', provider);
-    }
 
-    return this.http.post<ClassificationResponse>(`${this.baseUrl}/classify`, request, { params });
+    return this.http.post<ServerResponse>(`${baseUrl}/api/v1/classify`, request)
+      .pipe(
+        map(serverResponse => this.transformServerResponse(serverResponse))
+      );
+  }
+
+  private transformServerResponse(serverResponse: ServerResponse): ClassificationResponse {
+    const classifications: ClassificationResult[] = serverResponse.predictions.map(prediction => ({
+      language: prediction.language_name || prediction.language_id,
+      probability: prediction.probability
+    }));
+
+    return {
+      classifications,
+      writing_system: serverResponse.writing_system
+    };
   }
 }

@@ -12,9 +12,9 @@
       <div class="language-name">
         {{ topResult.language }}
       </div>
-      <div class="writing-system">
+      <div class="writing-system" *ngIf="writingSystem">
         <span class="writing-system-label">Writing System:</span>
-        <span class="writing-system-value">{{ topResult.writing_system }}</span>
+        <span class="writing-system-value">{{ writingSystem }}</span>
       </div>
       <div class="confidence-bar">
         <p-progressBar
@@ -34,7 +34,6 @@
         class="result-item">
         <div class="result-language-info">
           <span class="result-language">{{ result.language }}</span>
-          <span class="result-writing-system">{{ result.writing_system }}</span>
         </div>
         <div class="result-confidence">
           <span class="confidence-text">{{ (result.probability * 100).toFixed(1) }}%</span>

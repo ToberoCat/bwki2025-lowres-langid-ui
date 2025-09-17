@@ -62,10 +62,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "ui:build:production"
+              "buildTarget": "bwki2025-lowres-langid-ui:build:production"
             },
             "development": {
-              "buildTarget": "ui:build:development"
+              "buildTarget": "bwki2025-lowres-langid-ui:build:development"
             }
           },
           "defaultConfiguration": "development"

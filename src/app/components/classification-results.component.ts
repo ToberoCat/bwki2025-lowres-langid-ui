@@ -23,6 +23,7 @@ import { ClassificationResult } from '../services/language-classification.servic
 })
 export class ClassificationResultsComponent {
   @Input() results: ClassificationResult[] = [];
+  @Input() writingSystem: string = '';
   @Input() chartData: any = {};
   @Input() chartOptions: any = {};
 

@@ -5,6 +5,48 @@
   max-width: 1000px;
 }
 
+.bwki-banner {
+  background: linear-gradient(135deg, rgba(255, 248, 220, 0.95), rgba(255, 239, 185, 0.9));
+  border: 2px solid rgba(255, 215, 0, 0.4);
+  margin-bottom: $spacing-xl;
+  padding: $spacing-lg;
+  border-radius: $radius-lg;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(255, 215, 0, 0.1);
+  @include slide-up();
+
+  .banner-content {
+    h3 {
+      margin: 0 0 $spacing-md 0;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: $spacing-sm;
+    }
+
+    p {
+      margin: 0 0 $spacing-sm 0;
+      color: #2d2d2d;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      font-weight: 500;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      strong {
+        color: #1a1a1a;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
 .classifier-card {
   @include glass-card();
   @include card-base();

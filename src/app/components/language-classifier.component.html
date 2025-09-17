@@ -1,4 +1,13 @@
 <div class="language-classifier-container">
+  <!-- BWKI2025 Submission Banner -->
+  <div class="bwki-banner">
+    <div class="banner-content">
+      <h3>🏆 {{ 'banner.title' | translate }}</h3>
+      <p>{{ 'banner.description' | translate }}</p>
+      <p><strong>{{ 'banner.note_label' | translate }}:</strong> {{ 'banner.note' | translate }} ⏱️</p>
+    </div>
+  </div>
+
   <div class="classifier-card">
     <div class="card-header">
       <div class="title-section">
@@ -45,7 +54,7 @@
             [label]="'button.classify' | translate"
             (onClick)="classifyText()"
             [loading]="isLoading"
-            [disabled]="!inputText.trim() || !selectedProvider"
+            [disabled]="!inputText.trim() || !backendUrl.trim()"
             class="classify-btn"
             icon="pi pi-search">
           </p-button>
@@ -62,6 +71,7 @@
     <app-classification-results
       *ngIf="filteredClassifications.length > 0 && !isLoading"
       [results]="filteredClassifications"
+      [writingSystem]="writingSystem"
       [chartData]="chartData"
       [chartOptions]="chartOptions">
     </app-classification-results>
@@ -86,28 +96,14 @@
 
     <div class="settings-content">
       <div class="setting-group">
-        <label>{{ 'settings.provider' | translate }}</label>
-        <p-select
-          [options]="providerOptions"
-          [(ngModel)]="selectedProvider"
-          optionLabel="label"
-          optionValue="value"
-          [placeholder]="'settings.provider.placeholder' | translate"
+        <label>{{ 'settings.backend_url' | translate }}</label>
+        <input
+          type="url"
+          pInputText
+          [(ngModel)]="backendUrl"
+          [placeholder]="'settings.backend_url.placeholder' | translate"
           [disabled]="isLoading"
-          class="provider-select">
-        </p-select>
-
-        <div class="provider-info" *ngIf="selectedProviderInfo">
-          <div class="info-item">
-            <strong>{{ selectedProviderInfo.name }}</strong>
-            <span class="version">{{ 'settings.version' | translate }}: {{ selectedProviderInfo.version }}</span>
-          </div>
-          <div class="info-item">
-            <span class="languages-count">
-              {{ selectedProviderInfo.supported_languages }} {{ 'settings.languages' | translate }}
-            </span>
-          </div>
-        </div>
+          class="url-input">
       </div>
     </div>
   </p-dialog>

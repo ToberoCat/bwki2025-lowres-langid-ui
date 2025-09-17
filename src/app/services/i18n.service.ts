@@ -36,6 +36,8 @@ export class I18nService {
 
       // Settings
       'settings.title': 'Settings',
+      'settings.backend_url': 'Backend URL',
+      'settings.backend_url.placeholder': 'Enter backend URL',
       'settings.provider': 'AI Model Provider',
       'settings.provider.placeholder': 'Select a provider',
       'settings.languages': 'languages supported',
@@ -68,7 +70,13 @@ export class I18nService {
       'error.noProvider': 'No provider selected. Please select a model provider in settings.',
       'error.noText': 'Please enter some text to analyze.',
       'error.serverError': 'Unable to connect to the server. Please check if the backend is running.',
-      'error.classificationFailed': 'Language detection failed. Please try again.'
+      'error.classificationFailed': 'Language detection failed. Please try again.',
+
+      // BWKI Banner
+      'banner.title': 'BWKI2025 Submission',
+      'banner.description': 'This project is for the BWKI2025 submission. As this is not intended as a final product, but more like a demo for the competition, it is not to be expected to be available all the time (The deployed version is very cheap / free).',
+      'banner.note_label': 'Note',
+      'banner.note': 'If a request is taking longer, don\'t worry! Due to budget constraints, the server handling your request was most likely sent to shutdown and now has to cold start again - Give it some time'
     },
     de: {
       // Header
@@ -93,6 +101,8 @@ export class I18nService {
 
       // Settings
       'settings.title': 'Einstellungen',
+      'settings.backend_url': 'Backend-URL',
+      'settings.backend_url.placeholder': 'Backend-URL eingeben',
       'settings.provider': 'KI-Modell-Anbieter',
       'settings.provider.placeholder': 'Anbieter auswählen',
       'settings.languages': 'unterstützte Sprachen',
@@ -125,7 +135,13 @@ export class I18nService {
       'error.noProvider': 'Kein Anbieter ausgewählt. Bitte wählen Sie einen Modellanbieter in den Einstellungen.',
       'error.noText': 'Bitte geben Sie Text zur Analyse ein.',
       'error.serverError': 'Verbindung zum Server nicht möglich. Bitte prüfen Sie, ob das Backend läuft.',
-      'error.classificationFailed': 'Spracherkennung fehlgeschlagen. Bitte versuchen Sie es erneut.'
+      'error.classificationFailed': 'Spracherkennung fehlgeschlagen. Bitte versuchen Sie es erneut.',
+
+      // BWKI Banner
+      'banner.title': 'BWKI2025 Einreichung',
+      'banner.description': 'Dieses Projekt ist für die BWKI2025 Einreichung. Da es nicht als Endprodukt, sondern als Demo für den Wettbewerb gedacht ist, ist nicht zu erwarten, dass es immer verfügbar ist (Die bereitgestellte Version ist sehr günstig / kostenlos).',
+      'banner.note_label': 'Hinweis',
+      'banner.note': 'Falls eine Anfrage länger dauert, keine Sorge! Aufgrund von Budgetbeschränkungen wurde der Server, der Ihre Anfrage bearbeitet, wahrscheinlich heruntergefahren und muss jetzt kalt starten - Geben Sie ihm etwas Zeit'
     }
   };
 

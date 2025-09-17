@@ -7,9 +7,10 @@ import { SelectModule } from 'primeng/select';
 import { DialogModule } from 'primeng/dialog';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { TooltipModule } from 'primeng/tooltip';
-import { LanguageClassificationService, ClassificationResult, ProvidersResponse, ProviderInfo } from '../services/language-classification.service';
+import { InputTextModule } from 'primeng/inputtext';
+import { LanguageClassificationService, ClassificationResult } from '../services/language-classification.service';
+import { I18nService } from '../services/i18n.service';
 import { Textarea } from 'primeng/textarea';
-import { delay } from 'rxjs/operators';
 import { TranslatePipe } from '../pipes/translate.pipe';
 import { LanguageExamplesComponent } from './language-examples.component';
 import { ClassificationResultsComponent } from './classification-results.component';
@@ -27,6 +28,7 @@ import { LoadingSpinnerComponent } from '../shared/components';
     DialogModule,
     ProgressBarModule,
     TooltipModule,
+    InputTextModule,
     Textarea,
     TranslatePipe,
     LanguageExamplesComponent,
@@ -40,13 +42,12 @@ export class LanguageClassifierComponent implements OnInit {
   inputText: string = '';
   classifications: ClassificationResult[] = [];
   filteredClassifications: ClassificationResult[] = [];
+  writingSystem: string = '';
   isLoading: boolean = false;
   errorMessage: string = '';
   showSettings: boolean = false;
 
-  selectedProvider: string = '';
-  providerOptions: Array<{label: string, value: string}> = [];
-  providersResponse: ProvidersResponse | null = null;
+  backendUrl: string = 'https://bwki2025-lowres-langid-backend.fly.dev';
   lastResponse: any = null;
 
   chartData: any = {};
@@ -71,44 +72,16 @@ export class LanguageClassifierComponent implements OnInit {
   ];
 
   constructor(
-    private languageService: LanguageClassificationService
+    private languageService: LanguageClassificationService,
+    private i18nService: I18nService
   ) {}
 
   ngOnInit(): void {
-    this.loadProviders();
-  }
-
-  get selectedProviderInfo(): ProviderInfo | null {
-    if (!this.providersResponse || !this.selectedProvider) {
-      return null;
-    }
-    return this.providersResponse.details[this.selectedProvider] || null;
-  }
-
-  private loadProviders(): void {
-    this.languageService.getProviders().subscribe({
-      next: (response) => {
-        this.providersResponse = response;
-        this.providerOptions = response.providers.map(provider => ({
-          label: response.details[provider]?.name || provider,
-          value: provider
-        }));
-
-        if (response.default && response.providers.includes(response.default)) {
-          this.selectedProvider = response.default;
-        } else if (response.providers.length > 0) {
-          this.selectedProvider = response.providers[0];
-        }
-      },
-      error: (error) => {
-        console.error('Error loading providers:', error);
-        this.errorMessage = 'Failed to load available providers. Please check if the backend server is running.';
-      }
-    });
+    // No need to load providers anymore since we use a simple URL input
   }
 
   classifyText(): void {
-    if (!this.inputText.trim() || !this.selectedProvider) {
+    if (!this.inputText.trim() || !this.backendUrl.trim()) {
       return;
     }
 
@@ -116,22 +89,23 @@ export class LanguageClassifierComponent implements OnInit {
     this.errorMessage = '';
     this.classifications = [];
     this.filteredClassifications = [];
+    this.writingSystem = '';
 
-    const artificialDelay = Math.random() * 1000 + 1000;
+    const currentLanguage = this.i18nService.getCurrentLanguage();
 
-    this.languageService.classifyText(this.inputText, this.selectedProvider, 10)
-      .pipe(delay(artificialDelay))
+    this.languageService.classifyText(this.inputText, this.backendUrl, currentLanguage)
       .subscribe({
         next: (response) => {
           this.classifications = response.classifications;
           this.filteredClassifications = this.filterSignificantResults(response.classifications);
+          this.writingSystem = response.writing_system || '';
           this.lastResponse = response;
           this.updateChart();
           this.isLoading = false;
         },
         error: (error) => {
           console.error('Classification error:', error);
-          this.errorMessage = `Failed to classify text using ${this.selectedProvider} provider. Please check if the backend server is running and the model is available.`;
+          this.errorMessage = `Failed to classify text using the backend at ${this.backendUrl}. Please check if the backend server is running.`;
           this.isLoading = false;
         }
       });
@@ -168,6 +142,7 @@ export class LanguageClassifierComponent implements OnInit {
     this.inputText = '';
     this.classifications = [];
     this.filteredClassifications = [];
+    this.writingSystem = '';
     this.errorMessage = '';
   }
 }
