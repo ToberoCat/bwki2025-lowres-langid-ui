@@ -205,9 +205,30 @@
 }
 
 @include mobile {
+  .language-classifier-container {
+    padding: 0 $spacing-sm;
+  }
+
+  .bwki-banner {
+    margin-bottom: $spacing-lg;
+    padding: $spacing-md;
+
+    .banner-content {
+      h3 {
+        font-size: 1.1rem;
+        flex-direction: column;
+        gap: $spacing-xs;
+      }
+
+      p {
+        font-size: 0.85rem;
+      }
+    }
+  }
+
   .classifier-card {
     padding: $spacing-lg;
-    margin: $spacing-md;
+    margin: 0;
     border-radius: $radius-xl;
   }
 
@@ -215,17 +236,106 @@
     flex-direction: column;
     gap: $spacing-md;
     align-items: flex-start;
+    margin-bottom: $spacing-lg;
   }
 
-  .title-section h2 {
-    font-size: 1.5rem;
+  .title-section {
+    width: 100%;
+    text-align: center;
+
+    h2 {
+      font-size: 1.5rem;
+      line-height: 1.3;
+    }
+
+    p {
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+  }
+
+  .settings-btn {
+    align-self: center;
+  }
+
+  .input-section {
+    margin-bottom: $spacing-xl;
   }
 
   .input-actions {
     flex-direction: column-reverse;
+    gap: $spacing-sm;
+    align-items: center;
   }
 
   ::ng-deep .classify-btn {
-    width: 100% !important;
+    width: 80% !important;
+    max-width: 280px !important;
+    height: 52px !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    background: $primary-color !important;
+    border-radius: $radius-lg !important;
+    border: none !important;
+    box-shadow: none !important;
+
+    &:hover:not(:disabled) {
+      background: $primary-color-dark !important;
+      transform: translateY(-1px) !important;
+    }
+
+    &:active {
+      transform: translateY(0) !important;
+    }
+  }
+
+  ::ng-deep .clear-btn {
+    width: 60% !important;
+    max-width: 200px !important;
+    height: 44px !important;
+    justify-content: center !important;
+    font-size: 0.9rem !important;
+    border-radius: $radius-md !important;
+    background: transparent !important;
+    border: none !important;
+    color: $text-muted !important;
+
+    &:hover:not(:disabled) {
+      background: rgba(0, 0, 0, 0.05) !important;
+      color: $text-secondary !important;
+    }
+
+    &:active {
+      background: rgba(0, 0, 0, 0.1) !important;
+    }
+  }
+
+  ::ng-deep .text-input {
+    min-height: 100px !important;
+    font-size: 16px !important; // Prevents zoom on iOS
+  }
+}
+
+// Additional breakpoint for very small screens
+@media (max-width: $breakpoint-sm) {
+  .bwki-banner {
+    .banner-content {
+      h3 {
+        font-size: 1rem;
+      }
+
+      p {
+        font-size: 0.8rem;
+      }
+    }
+  }
+
+  .title-section h2 {
+    font-size: 1.3rem;
+  }
+
+  ::ng-deep .settings-dialog {
+    width: 95vw !important;
+    max-width: none !important;
   }
 }

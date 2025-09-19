@@ -76,7 +76,10 @@ export class I18nService {
       'banner.title': 'BWKI2025 Submission',
       'banner.description': 'This project is for the BWKI2025 submission. As this is not intended as a final product, but more like a demo for the competition, it is not to be expected to be available all the time (The deployed version is very cheap / free).',
       'banner.note_label': 'Note',
-      'banner.note': 'If a request is taking longer, don\'t worry! Due to budget constraints, the server handling your request was most likely sent to shutdown and now has to cold start again - Give it some time'
+      'banner.note': 'If a request is taking longer, don\'t worry! Due to budget constraints, the server handling your request was most likely sent to shutdown and now has to cold start again - Give it some time',
+
+      // Footer
+      'footer.cooperation': 'In cooperation with'
     },
     de: {
       // Header
@@ -141,7 +144,10 @@ export class I18nService {
       'banner.title': 'BWKI2025 Einreichung',
       'banner.description': 'Dieses Projekt ist für die BWKI2025 Einreichung. Da es nicht als Endprodukt, sondern als Demo für den Wettbewerb gedacht ist, ist nicht zu erwarten, dass es immer verfügbar ist (Die bereitgestellte Version ist sehr günstig / kostenlos).',
       'banner.note_label': 'Hinweis',
-      'banner.note': 'Falls eine Anfrage länger dauert, keine Sorge! Aufgrund von Budgetbeschränkungen wurde der Server, der Ihre Anfrage bearbeitet, wahrscheinlich heruntergefahren und muss jetzt kalt starten - Geben Sie ihm etwas Zeit'
+      'banner.note': 'Falls eine Anfrage länger dauert, keine Sorge! Aufgrund von Budgetbeschränkungen wurde der Server, der Ihre Anfrage bearbeitet, wahrscheinlich heruntergefahren und muss jetzt kalt starten - Geben Sie ihm etwas Zeit',
+
+      // Footer
+      'footer.cooperation': 'In Zusammenarbeit mit'
     }
   };
 
