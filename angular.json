@@ -36,6 +36,12 @@
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",
@@ -50,6 +56,18 @@
               ],
               "outputHashing": "all"
             },
+            "staging": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.staging.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractLicenses": true
+            },
             "development": {
               "optimization": false,
               "extractLicenses": false,
@@ -63,6 +81,9 @@
           "configurations": {
             "production": {
               "buildTarget": "bwki2025-lowres-langid-ui:build:production"
+            },
+            "staging": {
+              "buildTarget": "bwki2025-lowres-langid-ui:build:staging"
             },
             "development": {
               "buildTarget": "bwki2025-lowres-langid-ui:build:development"

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { EnvironmentService } from './environment.service';
 
 export interface ClassificationResult {
   language: string;
@@ -34,19 +35,24 @@ export interface ServerResponse {
   providedIn: 'root'
 })
 export class LanguageClassificationService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private environmentService: EnvironmentService
+  ) {}
 
-  checkHealth(baseUrl: string): Observable<any> {
-    return this.http.get(`${baseUrl}/health`);
+  checkHealth(baseUrl?: string): Observable<any> {
+    const url = baseUrl || this.environmentService.backendUrl;
+    return this.http.get(`${url}/health`);
   }
 
-  classifyText(text: string, baseUrl: string, locale: string = 'en'): Observable<ClassificationResponse> {
+  classifyText(text: string, baseUrl?: string, locale: string = 'en'): Observable<ClassificationResponse> {
     const request: ClassifyRequest = {
       text,
       locale
     };
 
-    return this.http.post<ServerResponse>(`${baseUrl}/api/v1/classify`, request)
+    const url = baseUrl || this.environmentService.backendUrl;
+    return this.http.post<ServerResponse>(`${url}/api/${this.environmentService.apiVersion}/classify`, request)
       .pipe(
         map(serverResponse => this.transformServerResponse(serverResponse))
       );

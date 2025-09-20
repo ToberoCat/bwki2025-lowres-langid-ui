@@ -10,6 +10,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { InputTextModule } from 'primeng/inputtext';
 import { LanguageClassificationService, ClassificationResult } from '../services/language-classification.service';
 import { I18nService } from '../services/i18n.service';
+import { EnvironmentService } from '../services/environment.service';
 import { Textarea } from 'primeng/textarea';
 import { TranslatePipe } from '../pipes/translate.pipe';
 import { LanguageExamplesComponent } from './language-examples.component';
@@ -47,7 +48,7 @@ export class LanguageClassifierComponent implements OnInit {
   errorMessage: string = '';
   showSettings: boolean = false;
 
-  backendUrl: string = 'https://bwki2025-lowres-langid-backend.fly.dev';
+  backendUrl: string = '';
   lastResponse: any = null;
 
   chartData: any = {};
@@ -73,15 +74,17 @@ export class LanguageClassifierComponent implements OnInit {
 
   constructor(
     private languageService: LanguageClassificationService,
-    private i18nService: I18nService
+    private i18nService: I18nService,
+    private environmentService: EnvironmentService
   ) {}
 
   ngOnInit(): void {
-    // No need to load providers anymore since we use a simple URL input
+    // Initialize backend URL from environment service
+    this.backendUrl = this.environmentService.backendUrl;
   }
 
   classifyText(): void {
-    if (!this.inputText.trim() || !this.backendUrl.trim()) {
+    if (!this.inputText.trim()) {
       return;
     }
 
@@ -92,6 +95,11 @@ export class LanguageClassifierComponent implements OnInit {
     this.writingSystem = '';
 
     const currentLanguage = this.i18nService.getCurrentLanguage();
+
+    // Update environment service if custom backend URL is provided
+    if (this.backendUrl && this.backendUrl !== this.environmentService.backendUrl) {
+      this.environmentService.setBackendUrl(this.backendUrl);
+    }
 
     this.languageService.classifyText(this.inputText, this.backendUrl, currentLanguage)
       .subscribe({
@@ -105,7 +113,8 @@ export class LanguageClassifierComponent implements OnInit {
         },
         error: (error) => {
           console.error('Classification error:', error);
-          this.errorMessage = `Failed to classify text using the backend at ${this.backendUrl}. Please check if the backend server is running.`;
+          const urlToShow = this.backendUrl || this.environmentService.backendUrl;
+          this.errorMessage = `Failed to classify text using the backend at ${urlToShow}. Please check if the backend server is running.`;
           this.isLoading = false;
         }
       });
