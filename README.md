@@ -42,7 +42,7 @@ npm install
 # Entwicklungsserver starten
 npm start
 
-# Anwendung ist verfügbar unter: http://localhost:4200
+# Anwendung ist verfügbar unter: http://localhost:4200 (Die Deprecation Warnings ignorieren
 ```
 
 ## 🐳 Docker Setup
