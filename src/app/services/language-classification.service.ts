@@ -59,10 +59,19 @@ export class LanguageClassificationService {
   }
 
   private transformServerResponse(serverResponse: ServerResponse): ClassificationResponse {
-    const classifications: ClassificationResult[] = serverResponse.predictions.map(prediction => ({
-      language: prediction.language_name || prediction.language_id,
-      probability: prediction.probability
-    }));
+    const classifications: ClassificationResult[] = serverResponse.predictions.map(prediction => {
+      let languageName = prediction.language_name || prediction.language_id;
+
+      // Replace 'und' (Undetermined) with 'Unknown'
+      if (prediction.language_id === 'und' || languageName.toLowerCase() === 'undetermined') {
+        languageName = 'Unknown';
+      }
+
+      return {
+        language: languageName,
+        probability: prediction.probability
+      };
+    });
 
     return {
       classifications,

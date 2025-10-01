@@ -53,9 +53,9 @@ export class I18nService {
 
       // About
       'about.title': 'About BwKi 2025',
-      'about.description': 'Our advanced machine learning system can identify over 500+ languages, including rare and low-resource languages that are often missed by traditional language detection tools.',
+      'about.description': 'Our advanced machine learning system can identify over 2000+ languages, including rare and low-resource languages that are often missed by traditional language detection tools.',
       'about.features': 'Key Features',
-      'about.feature1': 'Support for 500+ languages including rare dialects',
+      'about.feature1': 'Support for 2000+ languages including rare dialects',
       'about.feature2': 'Multiple AI model providers for best accuracy',
       'about.feature3': 'Real-time language detection with confidence scores',
       'about.feature4': 'Specialized in low-resource language identification',
@@ -121,9 +121,9 @@ export class I18nService {
 
       // About
       'about.title': 'Über BwKi 2025',
-      'about.description': 'Unser fortschrittliches maschinelles Lernsystem kann über 500+ Sprachen identifizieren, einschließlich seltener und ressourcenarmer Sprachen, die von herkömmlichen Spracherkennungstools oft übersehen werden.',
+      'about.description': 'Unser fortschrittliches maschinelles Lernsystem kann über 2000+ Sprachen identifizieren, einschließlich seltener und ressourcenarmer Sprachen, die von herkömmlichen Spracherkennungstools oft übersehen werden.',
       'about.features': 'Hauptmerkmale',
-      'about.feature1': 'Unterstützung für 500+ Sprachen einschließlich seltener Dialekte',
+      'about.feature1': 'Unterstützung für 2000+ Sprachen einschließlich seltener Dialekte',
       'about.feature2': 'Mehrere KI-Modell-Anbieter für beste Genauigkeit',
       'about.feature3': 'Echtzeit-Spracherkennung mit Vertrauenswerten',
       'about.feature4': 'Spezialisiert auf ressourcenarme Sprachidentifikation',

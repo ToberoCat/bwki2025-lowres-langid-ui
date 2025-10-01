@@ -70,6 +70,9 @@ export class LanguageClassifierComponent implements OnInit {
     { flag: '🇫🇷', text: 'Bonjour, comment allez-vous aujourd\'hui?' },
     { flag: '🇮🇹', text: 'Ciao, come stai oggi?' },
     { flag: '🇯🇵', text: 'こんにちは、今日はどうですか？' },
+    { flag: '🇵🇪', text: 'Ñuqa wasiykita rini, chaypi mikhuyta mikhuni, chaymanta kutiykama hamuni.' },
+    { flag: '🇲🇱', text: 'N bɛ taa fɛ ka jɔgɔ kun na, n bɛ se ka bɔ min bɛ taa.' },
+    { flag: '📜', text: 'Dat gafregin ih mit firahim firiuuizzo meista, dat ero ni uuas noh ûfhimil, noh paum nihheinîg noh pereg ni uuas.' },
   ];
 
   constructor(
